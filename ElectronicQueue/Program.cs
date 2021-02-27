@@ -10,6 +10,7 @@ namespace ElectronicQueue
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
