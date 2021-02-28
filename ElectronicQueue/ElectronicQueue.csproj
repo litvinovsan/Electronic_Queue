@@ -43,11 +43,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\QueueController.cs" />
+    <Compile Include="Controller\ServicesController.cs" />
+    <Compile Include="Controller\WindowsController.cs" />
+    <Compile Include="Model\Windows\Window.cs" />
+    <Compile Include="Model\Tickets\Ticket.cs" />
+    <Compile Include="Model\Services\IService.cs" />
+    <Compile Include="Model\Services\Service.cs" />
+    <Compile Include="Model\Tickets\ITicket.cs" />
+    <Compile Include="Model\Windows\IWindow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
