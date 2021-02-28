@@ -14,10 +14,10 @@ namespace ElectronicQueue.Model.Tickets
 
         public Ticket(IService service, int numberInQueue, int estimationTime, DateTime planedTime)
         {
-            if (numberInQueue <= 0) throw new ArgumentOutOfRangeException(nameof(numberInQueue));
-            if (estimationTime <= 0) throw new ArgumentOutOfRangeException(nameof(estimationTime));
+            if (numberInQueue < 0) throw new ArgumentOutOfRangeException(nameof(numberInQueue));
+            if (estimationTime < 0) throw new ArgumentOutOfRangeException(nameof(estimationTime));
 
-            Id = _id++;
+            Id = ++_id;
             Service = service ?? throw new ArgumentNullException(nameof(service));
             NumberInQueue = numberInQueue;
             EstimationTime = estimationTime;
@@ -35,10 +35,10 @@ namespace ElectronicQueue.Model.Tickets
 
         public override string ToString()
         {
-            return $"Талон №:      {Id}\n\r" +
-                   $"Вид услуги:   {Service.Name}\n\r" +
-                   $"№ в очереди:  {NumberInQueue}\n\r" +
-                   $"Время приема: {PlanedTime:HH:mm}\n\r";
+            return $"Талон №: {Id} \n\r" +
+                   $"Вид услуги: {Service.Name} \n\r" +
+                   $"№ в очереди на услугу {Service.Id}: {NumberInQueue} \n\r" +
+                   $"Плановое время приема: {PlanedTime:HH:mm} \n\r";
         }
     }
 }

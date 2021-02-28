@@ -18,7 +18,7 @@ namespace ElectronicQueue.Model.Услуги
             if (string.IsNullOrEmpty(name)) throw new ArgumentNullException(nameof(name));
             if (minutes <= 0) throw new ArgumentOutOfRangeException(nameof(minutes));
 
-            Id = _id++;
+            Id = ++_id;
             Name = name;
             PlannedMinutes = minutes;
         }
@@ -27,7 +27,7 @@ namespace ElectronicQueue.Model.Услуги
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return Id == other.Id && string.Equals(Name, other.Name) && PlannedMinutes == other.PlannedMinutes;
+            return string.Equals(Name, other.Name) && PlannedMinutes == other.PlannedMinutes;
         }
 
         public override bool Equals(object obj)
@@ -35,7 +35,7 @@ namespace ElectronicQueue.Model.Услуги
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((Service) obj);
+            return Equals((Service)obj);
         }
 
         public override int GetHashCode()

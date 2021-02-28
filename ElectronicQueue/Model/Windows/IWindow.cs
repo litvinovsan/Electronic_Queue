@@ -19,7 +19,7 @@ namespace ElectronicQueue.Model.Windows
         void AddService(IService[] service);
         int GetQueueCount();
         int GetQueueCount(string serviceName);
-        int GeetQueueTime();
+        int GetQueueTime();
         DateTime GetNextFreeTime();
         ITicket NextTicket();
     }

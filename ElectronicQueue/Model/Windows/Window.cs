@@ -65,7 +65,7 @@ namespace ElectronicQueue.Model.Windows
         /// <returns></returns>
         public DateTime GetNextFreeTime()
         {
-            var totalQueueTime = GeetQueueTime();
+            var totalQueueTime = GetQueueTime();
             var futureServiceTime = DateTime.Now.AddMinutes(totalQueueTime);
             return futureServiceTime;
         }
@@ -86,7 +86,7 @@ namespace ElectronicQueue.Model.Windows
         /// Возвращает ожидаемую длительность очереди в текущем окне в минутах
         /// </summary>
         /// <returns></returns>
-        public int GeetQueueTime()
+        public int GetQueueTime()
         {
             var result = TicketsQueue.Sum(x => x.Service.PlannedMinutes);
             return result;

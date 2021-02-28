@@ -22,12 +22,12 @@ namespace ElectronicQueue.Controller
             // Запрашиваемая услуга
             var curentService = _srvController.Get(serviceName);
             // Окна в которых обслуживается данная услуга
-            var wdws = _wndController.WndDictionary.Values.Where(x => x.AvailableServices.Contains(curentService));//.ToList();
+            var wdws = _wndController.WndDictionary.Values.Where(x => x.AvailableServices.Contains(curentService));
             // Суммарная длинна очереди во всех окнах для данной услуги
             var windows = wdws as IWindow[] ?? wdws.ToArray();
             int currentQueueLen = windows.Sum(item => item.GetQueueCount(serviceName));
-            // Окно с мин очередью куда уйдет текущий талон
-            var currentWnd = windows.Aggregate((a, b) => a.GetQueueCount() < b.GetQueueCount() ? a : b);
+            // Окно с мин по времени очередью куда уйдет текущий талон
+            var currentWnd = windows.Aggregate((a, b) => a.GetQueueTime() < b.GetQueueTime() ? a : b);
             // Плановое время приема
             DateTime plTime = currentWnd.GetNextFreeTime();
 
@@ -39,7 +39,7 @@ namespace ElectronicQueue.Controller
             }
 
             // Время ожидания в минутах
-            int estTime = currentWnd.GeetQueueTime();
+            int estTime = currentWnd.GetQueueTime();
 
             Ticket ticket = new Ticket(curentService, ++currentQueueLen, estTime, plTime);
 

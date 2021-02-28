@@ -43,9 +43,12 @@ namespace ElectronicQueue
             for (int i = 0; i < 10; i++)
             {
                 tickets.Add(controller.GetTicket(Services.Name1));
-                tickets.Add(controller.GetTicket(Services.Name2));
                 tickets.Add(controller.GetTicket(Services.Name3));
+                tickets.Add(controller.GetTicket(Services.Name2));
                 tickets.Add(controller.GetTicket(Services.Name4));
+                tickets.Add(controller.GetTicket(Services.Name1));
+                tickets.Add(controller.GetTicket(Services.Name1));
+                tickets.Add(controller.GetTicket(Services.Name1));
             }
             Console.WriteLine("\r\r");
 
@@ -55,15 +58,24 @@ namespace ElectronicQueue
                 Console.WriteLine(" ");
             }
 
-            // Внутренняя очередь в окнах заполняется равномерно. Метод NextTicket берет следующий Талон из очереди
+            // Внутренняя очередь в окнах заполняется равномерно.
+            Console.WriteLine($"{Windows.Num1}. Кол-во талонов:{windowsCntr[Windows.Num1].GetQueueCount()}. Суммарное время: {windowsCntr[Windows.Num1].GetQueueTime()} минут");
+            Console.WriteLine($"{Windows.Num2}. Кол-во талонов:{windowsCntr[Windows.Num2].GetQueueCount()}. Суммарное время: {windowsCntr[Windows.Num2].GetQueueTime()} минут");
+            Console.WriteLine($"{Windows.Num3}. Кол-во талонов:{windowsCntr[Windows.Num3].GetQueueCount()}. Суммарное время: {windowsCntr[Windows.Num3].GetQueueTime()} минут");
+            Console.WriteLine();
+
+            // Метод NextTicket берет следующий Талон из очереди
+            Console.WriteLine("После обработки 3х талонов первым окном:");
+            windowsCntr[Windows.Num1].NextTicket();
             windowsCntr[Windows.Num1].NextTicket();
             windowsCntr[Windows.Num1].NextTicket();
 
-            // Обработанные талоны в конкретном окне можно посмотреть в коллекции
-            foreach (var item in windowsCntr[Windows.Num1].TicketsQueue)
-            {
-                Console.WriteLine(item.ToString());
-            }
+            Console.WriteLine();
+            Console.WriteLine($"{Windows.Num1}. Кол-во талонов:{windowsCntr[Windows.Num1].GetQueueCount()}. Суммарное время: {windowsCntr[Windows.Num1].GetQueueTime()}");
+            Console.WriteLine($"{Windows.Num1}, история. Кол-во талонов:{windowsCntr[Windows.Num1].TicketsHistory.Count}.");
+
+            Console.ReadLine();
+
         }
     }
 
