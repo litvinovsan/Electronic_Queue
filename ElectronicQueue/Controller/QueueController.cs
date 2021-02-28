@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ElectronicQueue.Model.Services;
 using ElectronicQueue.Model.Tickets;
 using ElectronicQueue.Model.Windows;
 
@@ -11,8 +7,7 @@ namespace ElectronicQueue.Controller
 {
     public class QueueController
     {
-        private DateTime _dayBeginTime;
-        private DateTime _dayEndTime;
+        private readonly DateTime _dayEndTime;
         private readonly IWindowsController _wndController;
         private readonly IServicesController _srvController;
         public QueueController(IWindowsController wndCtrl, IServicesController srvController)
@@ -20,9 +15,7 @@ namespace ElectronicQueue.Controller
             _wndController = wndCtrl ?? throw new ArgumentNullException(nameof(wndCtrl));
             _srvController = srvController ?? throw new ArgumentNullException(nameof(srvController));
 
-            _dayBeginTime = DateTime.Now.Date + new TimeSpan(08, 00, 00);
             _dayEndTime = DateTime.Now.Date + new TimeSpan(16, 00, 00);
-
         }
         public Ticket GetTicket(string serviceName)
         {
@@ -39,7 +32,7 @@ namespace ElectronicQueue.Controller
             DateTime plTime = currentWnd.GetNextFreeTime();
 
             // Если запланированное время позднее времени окончания рабочего дня
-            if (plTime.CompareTo(_dayEndTime)>0)
+            if (plTime.CompareTo(_dayEndTime) > 0)
             {
                 Console.WriteLine("Рабочий день окончен");
                 return null;

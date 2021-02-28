@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ElectronicQueue.Model;
+using ElectronicQueue.Model.Services;
 using ElectronicQueue.Model.Tickets;
 using ElectronicQueue.Model.Windows;
 using Console = System.Console;
@@ -27,13 +25,30 @@ namespace ElectronicQueue.Controller
             WndDictionary.Add(name, new Window(name));
         }
 
+        public void AddServices(string windowName, IService[] service)
+        {
+            try
+            {
+                WndDictionary[windowName].AddService(service);
+            }
+            catch
+            {
+                Console.WriteLine("Ошибка добавления услуги");
+            }
+        }
+
+        /// <summary>
+        /// Добавить Талон в Конкретное окно
+        /// </summary>
+        /// <param name="windowName"></param>
+        /// <param name="ticket"></param>
         public void AddTicket(string windowName, ITicket ticket)
         {
             try
             {
                 WndDictionary[windowName].AddTicket(ticket);
             }
-            catch 
+            catch
             {
                 Console.WriteLine("Ошибка добавления");
             }
@@ -89,6 +104,13 @@ namespace ElectronicQueue.Controller
         /// </summary>
         /// <param name="name"></param>
         void Add(string name);
+
+        /// <summary>
+        /// Добавить возможность обрабатывать Услуги конкретному окну
+        /// </summary>
+        /// <param name="windowName"></param>
+        /// <param name="service"></param>
+        void AddServices(string windowName, IService[] service);
 
         void AddTicket(string windowName, ITicket ticket);
         /// <summary>

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using ElectronicQueue.Model.Services;
 using ElectronicQueue.Model.Tickets;
-using ElectronicQueue.Model.Услуги;
 
 namespace ElectronicQueue.Model.Windows
 {

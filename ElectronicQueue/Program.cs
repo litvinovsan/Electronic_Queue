@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ElectronicQueue.Controller;
-using ElectronicQueue.Model;
 using ElectronicQueue.Model.Tickets;
-using ElectronicQueue.Model.Услуги;
 
 namespace ElectronicQueue
 {
@@ -32,13 +27,13 @@ namespace ElectronicQueue
             windowsCntr.Add(Windows.Num3);
 
             // Устанавливаем доступные услуги для Окна 1. Окно должно знать какие услуги оно обслуживает
-            windowsCntr[Windows.Num1].AddService(new[] { servicesCntr.Get(Services.Name1), servicesCntr.Get(Services.Name2) });
+            windowsCntr.AddServices(Windows.Num1, new[] { servicesCntr.Get(Services.Name1), servicesCntr.Get(Services.Name2) });
 
             // Устанавливаем доступные услуги для Окна 2
-            windowsCntr[Windows.Num1].AddService(new[] { servicesCntr.Get(Services.Name1), servicesCntr.Get(Services.Name2), servicesCntr.Get(Services.Name3) });
+            windowsCntr.AddServices(Windows.Num2, new[] { servicesCntr.Get(Services.Name1), servicesCntr.Get(Services.Name2), servicesCntr.Get(Services.Name3) });
 
             // Устанавливаем доступные услуги для Окна 3
-            windowsCntr[Windows.Num1].AddService(new[] { servicesCntr.Get(Services.Name4) });
+            windowsCntr.AddServices(Windows.Num3, new[] { servicesCntr.Get(Services.Name4) });
 
             #endregion
 
